@@ -1,0 +1,9 @@
+{
+	"network-configs": {
+		"hyperledger-network": {
+			"name": "Hyperledger Network",
+			"profile": "./connection-profile/hyperledger-network.json"
+		}
+	},
+	"license": "Apache-2.0"
+}

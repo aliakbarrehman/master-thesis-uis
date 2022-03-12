@@ -1,0 +1,82 @@
+{
+	"name": "hyperledger-network",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "admin",
+			"password": "password"
+		},
+		"enableAuthentication": true,
+		"organization": "UiSMSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"datachannel": {
+			"peers": {
+				"peer0.uio.example.com": {},
+				"peer0.uib.example.com": {},
+				"peer0.uis.example.com": {}
+			}
+		}
+	},
+	"organizations": {
+		"UiOMSP": {
+			"mspid": "UiOMSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/uio.example.com/users/User1@uio.example.com/msp/keystore/priv_sk"
+			},
+			"peers": ["peer0.uio.example.com"],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/uio.example.com/users/User1@uio.example.com/msp/signcerts/User1@uio.example.com-cert.pem"
+			}
+		},
+		"UiBMSP": {
+			"mspid": "UiBMSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/uib.example.com/users/User1@uib.example.com/msp/keystore/priv_sk"
+			},
+			"peers": ["peer0.uib.example.com"],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/uib.example.com/users/User1@uib.example.com/msp/signcerts/User1@uib.example.com-cert.pem"
+			}
+		},
+		"UiSMSP": {
+			"mspid": "UiSMSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/uis.example.com/users/User1@uis.example.com/msp/keystore/priv_sk"
+			},
+			"peers": ["peer0.uis.example.com"],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/uis.example.com/users/User1@uis.example.com/msp/signcerts/User1@uis.example.com-cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer0.uio.example.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/uio.example.com/peers/peer0.uio.example.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.uio.example.com:9051"
+		},
+		"peer0.uib.example.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/uib.example.com/peers/peer0.uib.example.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.uib.example.com:10051"
+		},
+		"peer0.uis.example.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/uis.example.com/peers/peer0.uis.example.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.uis.example.com:7051"
+		}
+	}
+}
