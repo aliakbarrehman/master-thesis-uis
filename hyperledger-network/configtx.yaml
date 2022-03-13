@@ -14,6 +14,8 @@ Organizations:
             Admins:
                 Type: Signature
                 Rule: "OR('OrdererMSP.admin')"
+        OrdererEndpoints:
+            - orderer.example.com:7050
 
     - &UiS
         Name: UiSMSP

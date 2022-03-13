@@ -4,8 +4,12 @@
 	"client": {
 		"tlsEnable": true,
 		"adminCredential": {
+			"id": "exploreradmin",
+			"password": "exploreradminpw"
+		},
+		"caCredential": {
 			"id": "admin",
-			"password": "password"
+			"password": "adminpw"
 		},
 		"enableAuthentication": true,
 		"organization": "UiSMSP",
@@ -21,62 +25,63 @@
 	"channels": {
 		"datachannel": {
 			"peers": {
-				"peer0.uio.example.com": {},
 				"peer0.uib.example.com": {},
 				"peer0.uis.example.com": {}
 			}
 		}
 	},
 	"organizations": {
-		"UiOMSP": {
-			"mspid": "UiOMSP",
-			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/uio.example.com/users/User1@uio.example.com/msp/keystore/priv_sk"
-			},
-			"peers": ["peer0.uio.example.com"],
-			"signedCert": {
-				"path": "/tmp/crypto/peerOrganizations/uio.example.com/users/User1@uio.example.com/msp/signcerts/User1@uio.example.com-cert.pem"
-			}
-		},
 		"UiBMSP": {
 			"mspid": "UiBMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/uib.example.com/users/User1@uib.example.com/msp/keystore/priv_sk"
+				"path": "/tmp/crypto/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp/keystore/key"
 			},
 			"peers": ["peer0.uib.example.com"],
-			"signedCert": {
-				"path": "/tmp/crypto/peerOrganizations/uib.example.com/users/User1@uib.example.com/msp/signcerts/User1@uib.example.com-cert.pem"
-			}
+			"certificateAuthorities": ["ca_uib"]
 		},
 		"UiSMSP": {
 			"mspid": "UiSMSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/uis.example.com/users/User1@uis.example.com/msp/keystore/priv_sk"
+				"path": "/tmp/crypto/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp/keystore/key"
 			},
 			"peers": ["peer0.uis.example.com"],
-			"signedCert": {
-				"path": "/tmp/crypto/peerOrganizations/uis.example.com/users/User1@uis.example.com/msp/signcerts/User1@uis.example.com-cert.pem"
-			}
+			"certificateAuthorities": ["ca_uis"]
 		}
 	},
 	"peers": {
-		"peer0.uio.example.com": {
-			"tlsCACerts": {
-				"path": "/tmp/crypto/peerOrganizations/uio.example.com/peers/peer0.uio.example.com/tls/ca.crt"
-			},
-			"url": "grpcs://peer0.uio.example.com:9051"
-		},
 		"peer0.uib.example.com": {
 			"tlsCACerts": {
 				"path": "/tmp/crypto/peerOrganizations/uib.example.com/peers/peer0.uib.example.com/tls/ca.crt"
 			},
-			"url": "grpcs://peer0.uib.example.com:10051"
+			"url": "grpcs://peer0.uib.example.com:8051"
 		},
 		"peer0.uis.example.com": {
 			"tlsCACerts": {
 				"path": "/tmp/crypto/peerOrganizations/uis.example.com/peers/peer0.uis.example.com/tls/ca.crt"
 			},
 			"url": "grpcs://peer0.uis.example.com:7051"
+		}
+	},
+	"certificateAuthorities": {
+		"ca_uis": {
+			"url": "https://ca_uis:7054",
+			"httpOptions": {
+				"verify": false
+			},
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/uis.example.com/ca/ca.uis.example.com-cert.pem"
+			},
+			"caName": "ca_uis"
+		},
+		"ca_uib": {
+			"url": "https://ca_uib:8054",
+			"httpOptions": {
+				"verify": false
+			},
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/uib.example.com/ca/ca.uib.example.com-cert.pem"
+			},
+			"caName": "ca_uib"
 		}
 	}
 }
