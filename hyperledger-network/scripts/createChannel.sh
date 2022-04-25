@@ -93,15 +93,11 @@ infoln "Joining uis peer to the channel..."
 joinChannel uis
 infoln "Joining uib peer to the channel..."
 joinChannel uib
-# infoln "Joining uio peer to the channel..."
-# joinChannel uio
 
 ## Set the anchor peers for each org in the channel
 infoln "Setting anchor peer for uis..."
 setAnchorPeer uis
 infoln "Setting anchor peer for uib..."
 setAnchorPeer uib
-# infoln "Setting anchor peer for uio..."
-# setAnchorPeer uio
 
 successln "Channel '$CHANNEL_NAME' joined"

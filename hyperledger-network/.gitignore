@@ -1,0 +1,5 @@
+chaincode/node_modules/
+crypto-config
+channel-artifacts
+explorer/crypto-config
+log.txt

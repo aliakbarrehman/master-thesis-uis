@@ -26,7 +26,8 @@
 		"datachannel": {
 			"peers": {
 				"peer0.uib.example.com": {},
-				"peer0.uis.example.com": {}
+				"peer0.uis.example.com": {},
+				"peer0.uio.example.com": {}
 			}
 		}
 	},
@@ -46,6 +47,14 @@
 			},
 			"peers": ["peer0.uis.example.com"],
 			"certificateAuthorities": ["ca_uis"]
+		},
+		"UiOMSP": {
+			"mspid": "UiOMSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp/keystore/key"
+			},
+			"peers": ["peer0.uio.example.com"],
+			"certificateAuthorities": ["ca_uio"]
 		}
 	},
 	"peers": {
@@ -60,6 +69,12 @@
 				"path": "/tmp/crypto/peerOrganizations/uis.example.com/peers/peer0.uis.example.com/tls/ca.crt"
 			},
 			"url": "grpcs://peer0.uis.example.com:7051"
+		},
+		"peer0.uio.example.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/uio.example.com/peers/peer0.uio.example.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.uio.example.com:9051"
 		}
 	},
 	"certificateAuthorities": {
@@ -82,6 +97,16 @@
 				"path": "/tmp/crypto/peerOrganizations/uib.example.com/ca/ca.uib.example.com-cert.pem"
 			},
 			"caName": "ca_uib"
+		},
+		"ca_uio": {
+			"url": "https://ca_uio:9054",
+			"httpOptions": {
+				"verify": false
+			},
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/uio.example.com/ca/ca.uio.example.com-cert.pem"
+			},
+			"caName": "ca_uio"
 		}
 	}
 }

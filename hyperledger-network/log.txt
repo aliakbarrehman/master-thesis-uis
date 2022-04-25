@@ -1,2 +1,0 @@
-[34m2022-03-13 20:36:24.831 CET 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
-[34m2022-03-13 20:36:25.704 CET 0002 INFO[0m [channelCmd] [34;1mexecuteJoin[0m -> Successfully submitted proposal to join channel

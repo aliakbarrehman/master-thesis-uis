@@ -1,0 +1,15 @@
+/*
+    See the JupyterLab Developer Guide for useful CSS Patterns:
+
+    https://jupyterlab.readthedocs.io/en/stable/developer/css.html
+*/
+.jp-ReactWidget {
+    color: var(--jp-ui-font-color1);
+    background: var(--jp-layout-color1);
+    font-size: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  

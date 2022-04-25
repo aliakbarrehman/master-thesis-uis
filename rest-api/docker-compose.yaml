@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  thesis_network:
+
+services:
+  redis: 
+    image: 'redis'
+    container_name: 'rest-redis'
+    command: ['--maxmemory-policy','noeviction','--requirepass','fabric-redis-pwd']
+    ports:
+      - 6379:6379
+    networks:
+      - thesis_network
+
+  mysql:
+    image: mysql
+    command: --authentication_policy=mysql_native_password
+    restart: always
+    container_name: rest-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: thesis
+      MYSQL_USER: rest_sa
+      MYSQL_PASSWORD: rest_sa_pwd
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+    networks:
+      - thesis_network

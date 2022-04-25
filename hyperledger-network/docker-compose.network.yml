@@ -8,7 +8,6 @@ version: '3'
 volumes:
   orderer.example.com:
   peer0.uis.example.com:
-  peer0.uio.example.com:
   peer0.uib.example.com:
 
 networks:
@@ -87,12 +86,12 @@ services:
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
       #Generic peer variables
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabric_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=thesis_thesis_network
     volumes:
         - ./crypto-config/peerOrganizations/uis.example.com/peers/peer0.uis.example.com:/etc/hyperledger/fabric
         - peer0.uis.example.com:/var/hyperledger/production
         - ./config:/etc/hyperledger/peercfg
-        # - $DOCKER_SOCK:/host/var/run/docker.sock
+        - $DOCKER_SOCK:/host/var/run/docker.sock
     working_dir: /root
     command: peer node start
     ports:
@@ -131,61 +130,17 @@ services:
       - CORE_CHAINCODE_EXECUTETIMEOUT=300s
       #Generic peer variables
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabric_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=thesis_thesis_network
     volumes:
       - ./crypto-config/peerOrganizations/uib.example.com/peers/peer0.uib.example.com:/etc/hyperledger/fabric
       - peer0.uib.example.com:/var/hyperledger/production
       - ./config:/etc/hyperledger/peercfg
-      # - $DOCKER_SOCK:/host/var/run/docker.sock
+      - $DOCKER_SOCK:/host/var/run/docker.sock
     working_dir: /root
     command: peer node start
     ports:
       - 8051:8051
       - 9445:9445
-    networks:
-      - thesis_network
-
-  peer0.uio.example.com:
-    container_name: peer0.uio.example.com
-    image: hyperledger/fabric-peer:${IMAGE_TAG}
-    labels:
-      service: hyperledger-fabric
-    environment:
-      - FABRIC_CFG_PATH=/etc/hyperledger/peercfg
-      - FABRIC_LOGGING_SPEC=INFO
-      #- FABRIC_LOGGING_SPEC=DEBUG
-      - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_PROFILE_ENABLED=false
-      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
-      # Peer specific variables
-      - CORE_PEER_ID=peer0.uio.example.com
-      - CORE_PEER_ADDRESS=peer0.uio.example.com:9051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.uio.example.com:9052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.uio.example.com:9051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.uio.example.com:9051
-      - CORE_PEER_LOCALMSPID=UiSMSP
-      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/msp      
-      - CORE_OPERATIONS_LISTENADDRESS=peer0.uio.example.com:9446
-      - CORE_METRICS_PROVIDER=prometheus
-      - CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG={"peername":"peer0uio"}
-      - CORE_CHAINCODE_EXECUTETIMEOUT=300s
-      #Generic peer variables
-      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabric_test
-    volumes:
-      - ./crypto-config/peerOrganizations/uio.example.com/peers/peer0.uio.example.com:/etc/hyperledger/fabric
-      - peer0.uio.example.com:/var/hyperledger/production
-      - ./config:/etc/hyperledger/peercfg
-      # - $DOCKER_SOCK:/host/var/run/docker.sock
-    working_dir: /root
-    command: peer node start
-    ports:
-      - 9051:9051
-      - 9446:9446
     networks:
       - thesis_network
 
@@ -210,7 +165,6 @@ services:
 
     depends_on:
       - peer0.uis.example.com
-      - peer0.uio.example.com
       - peer0.uib.example.com
     networks:
       - thesis_network

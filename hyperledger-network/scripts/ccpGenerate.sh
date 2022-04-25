@@ -28,32 +28,14 @@ function yaml_ccp {
         scripts/ccp-template.yaml | sed -e $'s/\\\\n/\\\n          /g'
 }
 
-ORG=uis
-ORG_CAPS=UiS
-P0PORT=7051
-CAPORT=7054
-PEERPEM=${PWD}/crypto-config/peerOrganizations/$ORG.example.com/tlsca/tlsca.$ORG.example.com-cert.pem
-CAPEM=${PWD}/crypto-config/peerOrganizations/$ORG.example.com/ca/ca.$ORG.example.com-cert.pem
+function ccpGenerate {
+    ORG=$1
+    ORG_CAPS=$2
+    P0PORT=$3
+    CAPORT=$4
+    PEERPEM=${PWD}/crypto-config/peerOrganizations/$ORG.example.com/tlsca/tlsca.$ORG.example.com-cert.pem
+    CAPEM=${PWD}/crypto-config/peerOrganizations/$ORG.example.com/ca/ca.$ORG.example.com-cert.pem
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $ORG_CAPS)" > ${PWD}/crypto-config/peerOrganizations/$ORG.example.com/connection-$ORG.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $ORG_CAPS)" > ${PWD}/crypto-config/peerOrganizations/$ORG.example.com/connection-$ORG.yaml
-
-ORG=uib
-ORG_CAPS=UiB
-P0PORT=8051
-CAPORT=8054
-PEERPEM=${PWD}/crypto-config/peerOrganizations/$ORG.example.com/tlsca/tlsca.$ORG.example.com-cert.pem
-CAPEM=${PWD}/crypto-config/peerOrganizations/$ORG.example.com/ca/ca.$ORG.example.com-cert.pem
-
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $ORG_CAPS)" > ${PWD}/crypto-config/peerOrganizations/$ORG.example.com/connection-$ORG.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $ORG_CAPS)" > ${PWD}/crypto-config/peerOrganizations/$ORG.example.com/connection-$ORG.yaml
-
-ORG=uio
-ORG_CAPS=UiO
-P0PORT=9051
-CAPORT=9054
-PEERPEM=${PWD}/crypto-config/peerOrganizations/$ORG.example.com/tlsca/tlsca.$ORG.example.com-cert.pem
-CAPEM=${PWD}/crypto-config/peerOrganizations/$ORG.example.com/ca/ca.$ORG.example.com-cert.pem
-
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $ORG_CAPS)" > ${PWD}/crypto-config/peerOrganizations/$ORG.example.com/connection-$ORG.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $ORG_CAPS)" > ${PWD}/crypto-config/peerOrganizations/$ORG.example.com/connection-$ORG.yaml
+    echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $ORG_CAPS)" > ${PWD}/crypto-config/peerOrganizations/$ORG.example.com/connection-$ORG.json
+    echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $ORG_CAPS)" > ${PWD}/crypto-config/peerOrganizations/$ORG.example.com/connection-$ORG.yaml
+}

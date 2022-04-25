@@ -1,0 +1,11 @@
+escapism
+PyYAML
+kubernetes
+Jinja2
+jinja2-ansible-filters
+click
+jsonpath-ng
+h5py
+Keras
+tensorflow
+jupyter_contrib_nbextensions

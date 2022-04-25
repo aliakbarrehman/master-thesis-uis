@@ -1,0 +1,41 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+---
+################################################################################
+#
+#   Section: Organizations
+#
+#   - This section defines the different organizational identities which will
+#   be referenced later in the configuration.
+#
+################################################################################
+Organizations:
+    - &UiO
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
+        Name: UiOMSP
+
+        # ID to load the MSP definition as
+        ID: UiOMSP
+
+        MSPDir: ../crypto-config/peerOrganizations/uio.example.com/msp
+
+        # Policies defines the set of policies at this level of the config tree
+        # For organization policies, their canonical path is usually
+        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('UiOMSP.admin', 'UiOMSP.peer', 'UiOMSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('UiOMSP.admin', 'UiOMSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('UiOMSP.admin')"
+            Endorsement:
+                Type: Signature
+                Rule: "OR('UiOMSP.peer')"

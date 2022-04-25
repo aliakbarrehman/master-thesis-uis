@@ -1,0 +1,17 @@
+# workflow.yaml
+# Volume: name is the result from the extension
+# Volume: path will be inside the current user home
+jobs:
+- command: 'pwd' 
+- command: 'ls -la /home/jovyan'
+  volumes:
+  - name: uio
+    path: data/
+- command: 'ls -la /home/jovyan/data'
+- command: 'ls'
+
+# Job index starts at 1.
+dags:
+- 1 >> 2
+- 1 >> 3
+- 1 >> 4
