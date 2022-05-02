@@ -11,7 +11,7 @@ export const router = express.Router();
 router.get(
   '/:transactionId',
   async (request: express.Request, res: express.Response) => {
-    const mspId = request.body.mspId;
+    const mspId = request.headers.walletId as string;
     const transactionId = request.params.transactionId;
     try {
         const qsccContract = request.app.locals[mspId]?.qsccContract as Contract;

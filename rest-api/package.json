@@ -6,12 +6,14 @@
   "scripts": {
     "start": "tsc && node public/index.js",
     "start:redis": "docker run -p 6379:6379 --name fabric-sample-redis -d redis --maxmemory-policy noeviction --requirepass fabric-redis",
-    "lint": "tslint -c tslint.json -p tsconfig.json --fix"
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc"
   },
   "author": "Ali Akbar Rehman",
   "license": "ISC",
   "dependencies": {
     "bullmq": "^1.47.2",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "env-var": "^7.1.1",
     "express": "^4.17.3",

@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mysql
+spec:
+  type: ExternalName
+  externalName: google.com
+---
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: "external-web"
+spec:
+  ports:
+    - name: "test"
+      protocol: "TCP"
+      port: 80
+      targetPort: 80 
+---
+kind: "Endpoints"
+apiVersion: "v1"
+metadata:
+  name: "external-web" 
+subsets: 
+  - addresses:
+      - ip: 216.58.211.14 #The IP Address of the external web server
+    ports:
+      - port: 80 
+        name: "test"

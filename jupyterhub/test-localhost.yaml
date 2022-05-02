@@ -1,0 +1,19 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  name: host-docker-internal-demo
+spec:
+  containers:
+  - image: alpine
+    name: alpine
+    command: ["sh"]
+    args: ["-c", "sleep 1000000"]
+    resources: {}
+  - image: nginx
+    name: nginx
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

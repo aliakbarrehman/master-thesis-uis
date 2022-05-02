@@ -4,12 +4,95 @@
     https://jupyterlab.readthedocs.io/en/stable/developer/css.html
 */
 .jp-ReactWidget {
-    color: var(--jp-ui-font-color1);
+    /* color: var(--jp-ui-font-color1);
     background: var(--jp-layout-color1);
     font-size: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-  }
-  
+    text-align: center; */
+}
+
+.data-block {
+    min-width: calc(50% - 4rem);
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 0px 0px 10px #8888885e;
+    border-radius: 0.5rem;
+    position: relative;
+    min-height: 7rem;
+    display: inline-table;
+}
+
+.data-title {
+    color: #000000;
+    font-size: 2rem;
+    border-bottom: 1px solid #e7e7e7;
+    margin-bottom: 0.5rem;
+    padding-bottom: 4px;
+}
+
+.data-description {
+    text-align: justify;
+    color: #979797;
+}
+
+.lease-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.5rem;
+}
+.open {
+    background-color: #b1e9b1;
+}
+
+.used {
+    background-color: #e9b1b1;
+}
+
+.button-group {
+    margin: 1rem 0 0rem 0;
+}
+
+.button {
+    padding: 0.25rem;
+    border-radius: 5px;
+    border: none;
+    margin-right: 5px;
+    background-color: #153240;
+    color: white;
+}
+
+.button:hover {
+    padding: 0.25rem;
+    border-radius: 5px;
+    border: none;
+    margin-right: 5px;
+    background-color: rgb(199, 225, 230);
+    color: #153240;
+    cursor: pointer;
+}
+
+.input-group {
+    margin: 1rem;
+}
+
+.label {
+    display: inline-block;
+    min-width: 10rem;
+}
+
+.text-input {
+
+}
+
+.admin-selector {
+
+}
+
+.dropdown {
+
+}

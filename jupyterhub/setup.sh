@@ -77,11 +77,12 @@ kubectl apply --namespace $NAMESPACE -f https://raw.githubusercontent.com/argopr
 # expose argo web ui
 kubectl patch svc argo-server -p '{"spec": {"type": "LoadBalancer"}}' -n $NAMESPACE
 
-kubectl apply -n $NAMESPACE -f jupyterflow/jupyterhub-k8s/workflow-role.yaml
+kubectl apply -n $NAMESPACE -f workflow-role.yaml
 # binding workflow role to jupyterflow:default
 kubectl create rolebinding workflow-rb --role=workflow-role --serviceaccount=jupyterflow:default -n $NAMESPACE
 
 # echo "Setting up ingress controller"
 # helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace
 
-kubectl apply -f service-account.yaml -n jhub
+kubectl apply -f service-account.yaml -n $NAMESPACE
+

@@ -25,22 +25,13 @@ const plugin: JupyterFrontEndPlugin<void> = {
       label: 'Data Explorer',
       icon: extensionIcon,
       execute: () => {
-        const content = new RootWidget();
+        const content = new RootWidget(commands);
         const widget = new MainAreaWidget<RootWidget>({content});
         widget.title.label = "Data Explorer";
         widget.title.icon = extensionIcon;
         app.shell.add(widget, 'main');
       }
     })
-    // requestAPI<any>('get_example')
-    //   .then(data => {
-    //     console.log(data);
-    //   })
-    //   .catch(reason => {
-    //     console.error(
-    //       `The thesis_extension server extension appears to be missing.\n${reason}`
-    //     );
-    //   });
     
     if (launcher) {
       launcher.add({

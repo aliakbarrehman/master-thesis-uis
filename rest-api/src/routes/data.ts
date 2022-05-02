@@ -16,7 +16,7 @@ router.use((request: express.Request, response: express.Response, next: express.
 
 router.get('/', async (request: express.Request, response: express.Response) => {
   try {
-    const mspId = request.body.walletId;
+    const mspId = request.headers.walletid as string;
     const contract = request.app.locals[mspId].assetContract as Contract;
 
     const data = await evaluateTransaction(contract, 'GetAllDataBlocks');
@@ -36,7 +36,7 @@ router.get('/', async (request: express.Request, response: express.Response) => 
 
 router.post('/', async (request: express.Request, response: express.Response) => {
   console.log('Create asset request received');
-  const mspId: string = request.body.walletId;
+  const mspId = request.headers.walletid as string;
   if (mspId == null) {
     return response.status(400).json({
       status: 'Wallet Id cannot be empty'
@@ -96,7 +96,7 @@ router.post('/', async (request: express.Request, response: express.Response) =>
 router.get('/:datablockId', async (request: express.Request, response: express.Response) => {
   const id = request.params.datablockId;
   try {
-    const mspId = request.body.walletId;
+    const mspId = request.headers.walletid as string;
     if (mspId == null) {
       return response.status(400).json({
         status: 'Wallet Id cannot be empty'
@@ -119,10 +119,10 @@ router.get('/:datablockId', async (request: express.Request, response: express.R
   }
 });
 
-router.patch(
+router.post(
   '/:datablockId', async (request: express.Request, response: express.Response) => {
     const id = request.params.datablockId;
-    const mspId = request.body.walletId;
+    const mspId = request.headers.walletid as string;
     if (mspId == null) {
       return response.status(400).json({
         status: 'Wallet Id cannot be empty'
@@ -158,7 +158,7 @@ router.delete('/:datablockId', async (request: express.Request, response: expres
   const id = request.params.datablockId;
 
   try {
-    const mspId = request.body.walletId;
+    const mspId = request.headers.walletid as string;
     if (mspId == null) {
       return response.status(400).json({
         status: 'Wallet Id cannot be empty'
@@ -186,9 +186,9 @@ router.delete('/:datablockId', async (request: express.Request, response: expres
   }
 });
 
-router.patch('/lease/:datablockId', async (request: express.Request, response: express.Response) => {
+router.post('/lease/:datablockId', async (request: express.Request, response: express.Response) => {
   const id = request.params.datablockId;
-  const mspId = request.body.walletId;
+  const mspId = request.headers.walletid as string;
   try {
     const submitQueue = request.app.locals.jobq as Queue;
     if (request.body.action == "lease") {

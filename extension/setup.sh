@@ -19,3 +19,13 @@ pip install -e .
 jupyter labextension develop . --overwrite
 # Rebuild extension Typescript source after making changes
 jlpm run build
+
+
+
+# FOR PUBLISHING
+pip install build
+python -m build -s
+python -m build
+
+cp dist/thesis_extension-0.1.0-py3-none-any.whl ../../jupyterhub/thesis_extension-0.1.0-py3-none-any.whl
+# pip install jupyterlab_apod/dist/thesis_extension-0.1.0-py3-none-any.whl

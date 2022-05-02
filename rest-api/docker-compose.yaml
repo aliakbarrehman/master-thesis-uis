@@ -7,6 +7,7 @@ services:
   redis: 
     image: 'redis'
     container_name: 'rest-redis'
+    restart: always
     command: ['--maxmemory-policy','noeviction','--requirepass','fabric-redis-pwd']
     ports:
       - 6379:6379
@@ -29,3 +30,15 @@ services:
       - ./dump:/docker-entrypoint-initdb.d
     networks:
       - thesis_network
+
+  # rest-api:
+  #   image: rest-api
+  #   container_name: rest-api
+  #   restart: always
+  #   environment:
+  #     TEST: "true"
+  #   # ports:
+  #   #   - "3000:3000"
+  #   volumes:
+  #     - ./../hyperledger-network/crypto-config:/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config
+  #   network_mode: host
