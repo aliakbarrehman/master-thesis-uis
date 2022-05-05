@@ -26,8 +26,8 @@ peer lifecycle chaincode package "$CHAINCODE_NAME.tar.gz" --path $WORKING_DIR/ch
 # Step 2. Install Chaincode on peers
 export CORE_PEER_TLS_ENABLED=true
 export CORE_PEER_LOCALMSPID="UiSMSP"
-export CORE_PEER_TLS_ROOTCERT_FILE=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/peers/peer0.uis.example.com/tls/ca.crt
-export CORE_PEER_MSPCONFIGPATH=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/crypto-config/peerOrganizations/uis.example.com/peers/peer0.uis.example.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp
 export CORE_PEER_ADDRESS=localhost:7051
 
 peer lifecycle chaincode install "$CHAINCODE_NAME.tar.gz"
@@ -35,8 +35,8 @@ peer lifecycle chaincode install "$CHAINCODE_NAME.tar.gz"
 
 export CORE_PEER_TLS_ENABLED=true
 export CORE_PEER_LOCALMSPID="UiBMSP"
-export CORE_PEER_TLS_ROOTCERT_FILE=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/peers/peer0.uib.example.com/tls/ca.crt
-export CORE_PEER_MSPCONFIGPATH=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/crypto-config/peerOrganizations/uib.example.com/peers/peer0.uib.example.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp
 export CORE_PEER_ADDRESS=localhost:8051
 
 peer lifecycle chaincode install "$CHAINCODE_NAME.tar.gz"
@@ -44,8 +44,8 @@ peer lifecycle chaincode install "$CHAINCODE_NAME.tar.gz"
 
 export CORE_PEER_TLS_ENABLED=true
 export CORE_PEER_LOCALMSPID="UiOMSP"
-export CORE_PEER_TLS_ROOTCERT_FILE=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uio.example.com/peers/peer0.uio.example.com/tls/ca.crt
-export CORE_PEER_MSPCONFIGPATH=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/crypto-config/peerOrganizations/uio.example.com/peers/peer0.uio.example.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp
 export CORE_PEER_ADDRESS=localhost:9051
 
 peer lifecycle chaincode install "$CHAINCODE_NAME.tar.gz"
@@ -64,8 +64,8 @@ peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameO
 # Approve as UiS
 export CORE_PEER_TLS_ENABLED=true
 export CORE_PEER_LOCALMSPID="UiSMSP"
-export CORE_PEER_TLS_ROOTCERT_FILE=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/peers/peer0.uis.example.com/tls/ca.crt
-export CORE_PEER_MSPCONFIGPATH=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/crypto-config/peerOrganizations/uis.example.com/peers/peer0.uis.example.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp
 export CORE_PEER_ADDRESS=localhost:7051
 
 peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID $CHANNEL_NAME --name "$CHAINCODE_NAME" --version 1.0 --package-id $CC_PACKAGE_ID --sequence $SEQ --tls --cafile "${PWD}/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem"
@@ -75,8 +75,8 @@ peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameO
 # Approve as UiB
 export CORE_PEER_TLS_ENABLED=true
 export CORE_PEER_LOCALMSPID="UiBMSP"
-export CORE_PEER_TLS_ROOTCERT_FILE=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/peers/peer0.uib.example.com/tls/ca.crt
-export CORE_PEER_MSPCONFIGPATH=/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/crypto-config/peerOrganizations/uib.example.com/peers/peer0.uib.example.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp
 export CORE_PEER_ADDRESS=localhost:8051
 
 peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID $CHANNEL_NAME --name "$CHAINCODE_NAME" --version 1.0 --package-id $CC_PACKAGE_ID --sequence $SEQ --tls --cafile "${PWD}/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem"
@@ -91,6 +91,4 @@ peer lifecycle chaincode querycommitted --channelID $CHANNEL_NAME --name "$CHAIN
 
 peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com -C $CHANNEL_NAME -n "$CHAINCODE_NAME" --tls --cafile "${PWD}/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/crypto-config/peerOrganizations/uis.example.com/peers/peer0.uis.example.com/tls/ca.crt" --peerAddresses localhost:8051 --tlsRootCertFiles "${PWD}/crypto-config/peerOrganizations/uib.example.com/peers/peer0.uib.example.com/tls/ca.crt" --peerAddresses localhost:9051 --tlsRootCertFiles "${PWD}/crypto-config/peerOrganizations/uio.example.com/peers/peer0.uio.example.com/tls/ca.crt" -c '{"function":"InitLedger","Args":[]}'
 
-# peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C datachannel -n "$CHAINCODE_NAME" --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/crypto-config/peerOrganizations/uis.example.com/peers/peer0.uis.example.com/tls/ca.crt" --peerAddresses localhost:8051 --tlsRootCertFiles "${PWD}/crypto-config/peerOrganizations/uib.example.com/peers/peer0.uib.example.com/tls/ca.crt" --peerAddresses localhost:9051 --tlsRootCertFiles "${PWD}/crypto-config/peerOrganizations/uio.example.com/peers/peer0.uio.example.com/tls/ca.crt" -c '{"function":"AddDataBlock","Args":["{id:1,title:Sample,description:data,owner:uis,host:vm.uis.example.com,path:/data}"]}'
-
-# peer chaincode query -C datachannel -n "$CHAINCODE_NAME" -c '{"Args":["GetAllDataBlocks"]}'
+rm -f $CHAINCODE_NAME.tar.gz

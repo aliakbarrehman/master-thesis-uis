@@ -33,6 +33,7 @@ fi
 
 NAMESPACE=$1
 CONFIG_YAML=$2
+REST_IP=$3
 
 if [ "$NAMESPACE" -eq "" ]; then
   NAMESPACE="jhub"
@@ -40,6 +41,12 @@ fi
 
 if [ "$CONFIG_YAML" -eq "" ]; then
   CONFIG_YAML="config.yaml"
+fi
+fi
+
+if [ "$REST_IP" -eq "" ]; then
+  echo "Please input the IP for API. Format setup.sh namespace config.yaml IP"
+  exit 1
 fi
 
 echo "Using Namespace = $NAMESPACE"
@@ -81,8 +88,12 @@ kubectl apply -n $NAMESPACE -f workflow-role.yaml
 # binding workflow role to jupyterflow:default
 kubectl create rolebinding workflow-rb --role=workflow-role --serviceaccount=jupyterflow:default -n $NAMESPACE
 
-# echo "Setting up ingress controller"
-# helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace
-
 kubectl apply -f service-account.yaml -n $NAMESPACE
+
+echo "Please copy and save this token for jupyterflow"
+kubectl get secrets -n jhub | grep volume-manager > secret-name.txt
+kubectl describe secret $(sed 's|\b   .*||g' secret-name.txt) -n $NAMESPACE
+rm -f secret-name.txt
+
+kubectl apply -f blockchain-service.yaml -n $NAMESPACE
 

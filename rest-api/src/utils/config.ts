@@ -97,8 +97,8 @@ export const submitJobQueueScheduler = env
  */
 export const asLocalhost = env
   .get('AS_LOCAL_HOST')
-  .default('true')
-  .example('true')
+  .default('false')
+  .example('false')
   .asBoolStrict();
 
 /**
@@ -204,8 +204,8 @@ export const queryTimeout = env
  */
 export const connectionProfileOrg1 = env
   .get('HLF_CONNECTION_PROFILE_ORG1')
-  .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/connection-uis.json')
-  .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/connection-uis.json')
+  .default('/blockchain/crypto-config/peerOrganizations/uis.example.com/connection-uis.json')
+  .example('/blockchain/crypto-config/peerOrganizations/uis.example.com/connection-uis.json')
   .asString();
 
 /**
@@ -213,8 +213,8 @@ export const connectionProfileOrg1 = env
  */
 export const certificateOrg1 = env
   .get('HLF_CERTIFICATE_ORG1')
-  .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp/signcerts/cert.pem')
-  .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp/signcerts/cert.pem')
+  .default('/blockchain/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp/signcerts/cert.pem')
+  .example('/blockchain/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp/signcerts/cert.pem')
   .asString();
 
 /**
@@ -222,8 +222,8 @@ export const certificateOrg1 = env
  */
 export const privateKeyOrg1 = env
   .get('HLF_PRIVATE_KEY_ORG1')
-  .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp/keystore/key')
-  .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp/keystore/key')
+  .default('/blockchain/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp/keystore/key')
+  .example('/blockchain/crypto-config/peerOrganizations/uis.example.com/users/Admin@uis.example.com/msp/keystore/key')
   .asString();
 
 /**
@@ -231,8 +231,8 @@ export const privateKeyOrg1 = env
  */
  export const connectionProfileOrg2 = env
  .get('HLF_CONNECTION_PROFILE_ORG2')
- .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/connection-uib.json')
- .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/connection-uib.json')
+ .default('/blockchain/crypto-config/peerOrganizations/uib.example.com/connection-uib.json')
+ .example('/blockchain/crypto-config/peerOrganizations/uib.example.com/connection-uib.json')
  .asString();
 
 /**
@@ -240,8 +240,8 @@ export const privateKeyOrg1 = env
 */
 export const certificateOrg2 = env
  .get('HLF_CERTIFICATE_ORG2')
- .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp/signcerts/cert.pem')
- .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp/signcerts/cert.pem')
+ .default('/blockchain/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp/signcerts/cert.pem')
+ .example('/blockchain/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp/signcerts/cert.pem')
  .asString();
 
 /**
@@ -249,8 +249,8 @@ export const certificateOrg2 = env
 */
 export const privateKeyOrg2 = env
  .get('HLF_PRIVATE_KEY_ORG2')
- .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp/keystore/key')
- .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp/keystore/key')
+ .default('/blockchain/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp/keystore/key')
+ .example('/blockchain/crypto-config/peerOrganizations/uib.example.com/users/Admin@uib.example.com/msp/keystore/key')
  .asString();
 
 /**
@@ -258,8 +258,8 @@ export const privateKeyOrg2 = env
  */
  export const connectionProfileOrg3 = env
  .get('HLF_CONNECTION_PROFILE_ORG3')
- .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uio.example.com/connection-uio.json')
- .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uio.example.com/connection-uio.json')
+ .default('/blockchain/crypto-config/peerOrganizations/uio.example.com/connection-uio.json')
+ .example('/blockchain/crypto-config/peerOrganizations/uio.example.com/connection-uio.json')
  .asString();
 
 /**
@@ -267,8 +267,8 @@ export const privateKeyOrg2 = env
 */
 export const certificateOrg3 = env
  .get('HLF_CERTIFICATE_ORG3')
- .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp/signcerts/cert.pem')
- .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp/signcerts/cert.pem')
+ .default('/blockchain/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp/signcerts/cert.pem')
+ .example('/blockchain/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp/signcerts/cert.pem')
  .asString();
 
 /**
@@ -276,16 +276,16 @@ export const certificateOrg3 = env
 */
 export const privateKeyOrg3 = env
  .get('HLF_PRIVATE_KEY_ORG3')
- .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp/keystore/key')
- .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp/keystore/key')
+ .default('/blockchain/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp/keystore/key')
+ .example('/blockchain/crypto-config/peerOrganizations/uio.example.com/users/Admin@uio.example.com/msp/keystore/key')
  .asString();
 
  /**
   * Wallet path
   */
 export const walletPath = env.get('WALLET_PATH')
-  .default('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/rest-api/wallet')
-  .example('/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/rest-api/wallet')
+  .default('/rest-api/wallet')
+  .example('/rest-api/wallet')
   .asString();
 
 /**
@@ -293,8 +293,8 @@ export const walletPath = env.get('WALLET_PATH')
  */
 export const redisHost = env
   .get('REDIS_HOST')
-  .default('localhost')
-  .example('localhost')
+  .default('rest-redis')
+  .example('rest-redis')
   .asString();
 
 /**

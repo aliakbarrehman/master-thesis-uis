@@ -226,7 +226,7 @@ router.post('/lease/:datablockId', async (request: express.Request, response: ex
 
 function getConnection() {
   return mysql.createConnection({
-    host: 'localhost',
+    host: 'rest-mysql',
     user: config.mySqlUsername,
     password: config.mySqlPassword,
     database: config.mySqldb

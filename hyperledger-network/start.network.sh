@@ -18,8 +18,9 @@ infoln "Running Hyperledger explorer"
 infoln "Running Hyperledger explorer"
 for file in $(ls -R ${PWD}/crypto-config/peerOrganizations/ | grep keystore: | cut -d':' -f 1  | sed 's/$//'); do mv $file/* $file/key; done
 mkdir -p ${PWD}/explorer/crypto-config
-# cp -r ${PWD}/crypto-config/* ${PWD}/explorer/crypto-config/
-# docker-compose -f ${PWD}/explorer/docker-compose.yml up -d
 
 ./addOrg/addOrg.sh uio UiO 9051 9054
 for file in $(ls -R ${PWD}/crypto-config/peerOrganizations/ | grep keystore: | cut -d':' -f 1  | sed 's/$//'); do mv $file/* $file/key; done
+
+echo "Deploying chaincode"
+./scripts/deploy.sh chaincode 1 data datachannel

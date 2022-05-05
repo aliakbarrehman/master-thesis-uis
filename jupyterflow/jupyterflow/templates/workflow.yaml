@@ -1,0 +1,76 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: {{ workflow['name']  }}-
+spec:
+  entrypoint: dag
+  templates:
+  {%- for job in workflow.jobs %}
+  - name: {{ job['name'] }}
+    {%- if workflow['spec']['serviceAccountName'] %}
+    serviceAccountName: {{ workflow['spec']['serviceAccountName'] }}
+    {%- endif %}
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    container:
+      image: {{ workflow['spec']['image'] }}
+      command: {{ job['command'] }}
+      workingDir: {{ runtime['workingDir'] }}
+      imagePullPolicy: {{ workflow['spec']['imagePullPolicy'] }}
+      {%- if workflow['spec']['imagePullSecrets'] %}
+      imagePullSecret: 
+      {%- for secret in workflow['spec']['imagePullSecrets'] %}
+      - {{ secret | to_nice_yaml }}
+      {%- endfor %}
+      {%- endif %}
+      securityContext:
+        runAsUser: {{ workflow['spec']['runAsUser'] }}
+        runAsGroup: {{ workflow['spec']['runAsGroup'] }}
+      env:
+      - name: NB_USER
+        value: {{ runtime['NB_USER'] }}
+      - name: PATH
+        value: {{ runtime['PATH'] }}
+      - name: HOME
+        value: {{ runtime['HOME'] }}
+      {%- if workflow['spec']['env'] %}
+      {%- for ev in workflow['spec']['env'] %}
+      - name: {{ ev['name'] }}
+        value: "{{ ev['value'] }}"
+      {%- endfor %}
+      {%- endif %}
+      {%- if workflow['spec']['env_from'] %}
+      envFrom: {{ workflow['spec']['env_from'] }}
+      {%- endif %}
+      {%- if workflow['spec']['resources'] %}
+      resources:
+        {{ workflow['spec']['resources'] | to_nice_yaml | indent(8) }}
+      {%- endif %}
+      {%- if workflow['spec']['volumeMounts'] %}
+      volumeMounts:
+      {%- for v in workflow['spec']['volumeMounts'] %}
+      - {{ v | to_nice_yaml | indent(8) }}
+      {%- endfor -%}
+      {%- endif -%}
+  {%- endfor %}
+
+  - name: dag
+    dag:
+      tasks:
+      {%- for job in workflow['jobs'] %}
+      - name: {{ job['name'] }}
+        template: {{ job['name'] }}
+        dependencies: {{ job['dependencies']}}
+      {%- endfor %}
+  {%- if workflow['spec']['volumes'] %}
+  volumes:
+  {%- for vol in workflow['spec']['volumes'] %}
+  - {{ vol | to_nice_yaml | indent }}
+  {%- endfor %}
+  {%- endif %}
+  {%- if workflow['spec']['nodeSelector'] %}
+  nodeSelector:
+    {{ workflow['spec']['nodeSelector'] | to_nice_yaml | indent(4) }}
+  {%- endif %}
+  

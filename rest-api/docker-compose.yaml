@@ -1,7 +1,9 @@
 version: '3'
 
 networks:
-  thesis_network:
+  explorer_network:
+    external:
+      name: thesis_thesis_network
 
 services:
   redis: 
@@ -12,7 +14,7 @@ services:
     ports:
       - 6379:6379
     networks:
-      - thesis_network
+      - explorer_network
 
   mysql:
     image: mysql
@@ -27,18 +29,23 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./dump:/docker-entrypoint-initdb.d
+      - ./mysql-init:/docker-entrypoint-initdb.d
     networks:
-      - thesis_network
+      - explorer_network
 
-  # rest-api:
-  #   image: rest-api
-  #   container_name: rest-api
-  #   restart: always
-  #   environment:
-  #     TEST: "true"
-  #   # ports:
-  #   #   - "3000:3000"
-  #   volumes:
-  #     - ./../hyperledger-network/crypto-config:/mnt/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/crypto-config
-  #   network_mode: host
+  rest-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rest-api
+    restart: always
+    environment:
+      TEST: "true"
+    ports:
+      - "3000:3000"
+    # network_mode: host
+    volumes:
+      - ./../hyperledger-network/crypto-config:/blockchain/crypto-config
+      - ./wallet:/rest-api/wallet
+    networks:
+      - explorer_network
