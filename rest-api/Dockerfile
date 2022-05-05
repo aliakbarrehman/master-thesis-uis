@@ -3,6 +3,9 @@ FROM node:16.14.2 as base
 # Add package file
 COPY package.json ./
 
+# Updating npm version
+RUN npm install -g npm@latest
+
 # Install deps
 RUN npm install
 
