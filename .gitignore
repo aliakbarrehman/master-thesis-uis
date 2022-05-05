@@ -1,4 +1,3 @@
-bin/**
 hyperledger-network/channel-artifacts
 hyperledger-network/crypto-config
 hyperledger-network/explorer/crypto-config
