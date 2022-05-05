@@ -1,3 +1,4 @@
+#!/bin/bash
 export PATH=$PATH:/${PWD}/../bin/
 source ${PWD}/scripts/utils.sh
 source ${PWD}/scripts/env.sh

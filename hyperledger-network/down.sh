@@ -1,3 +1,4 @@
+#!/bin/bash
 source ${PWD}/scripts/utils.sh
 
 infoln "Stopping docker containers"

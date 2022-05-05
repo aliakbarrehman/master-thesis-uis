@@ -1,4 +1,5 @@
 
+#!/bin/bash
 function createOrg() {
   ORG=$1
   PORT=$2

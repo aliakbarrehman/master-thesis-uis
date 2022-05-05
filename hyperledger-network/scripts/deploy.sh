@@ -1,3 +1,4 @@
+#!/bin/bash
 CC_PATH=$1
 SEQ=$2
 CHAINCODE_NAME=$3

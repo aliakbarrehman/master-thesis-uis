@@ -1,3 +1,4 @@
+#!/bin/bash
 # Pre-Requsites
 # 1. Install Docker
 #   a. Install Docker based on your setup
