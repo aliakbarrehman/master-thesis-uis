@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: center;
     text-align: center; */
+    position: relative;
 }
 
 .data-block {
@@ -85,14 +86,19 @@
     min-width: 10rem;
 }
 
-.text-input {
-
+.red {
+    color: red;
 }
 
-.admin-selector {
-
-}
-
-.dropdown {
-
+.message {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: calc(100% - 2rem);
+    font-size: large;
+    font-weight: 500;
+    color: #fff;
+    padding: 1rem;
+    background-color: #417f9d;
+    min-height: 1rem;
 }

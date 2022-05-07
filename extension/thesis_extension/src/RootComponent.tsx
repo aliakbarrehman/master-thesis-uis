@@ -3,11 +3,12 @@ import { ReactWidget } from '@jupyterlab/apputils';
 import DataBlock from './DataBlock';
 import DataForm from './DataForm';
 
-const RootComponent = (commands: any) : JSX.Element => {
+import KernelModel from './model';
+
+const RootComponent = ({ model, ...props }: any) : JSX.Element => {
     const [isAdmin, setIsAdmin] = useState<Boolean>(false);
     const [mspId, setMspId] = useState<string>('UiSMSP');
 
-    debugger;
     return (
         <div>
           <div className='input-group'>
@@ -20,24 +21,24 @@ const RootComponent = (commands: any) : JSX.Element => {
           </div>
           {isAdmin ? <DataForm mspId={mspId} /> : <></>}
 
-          <DataBlock commands={commands} mspId={mspId} isAdmin={isAdmin} />
+          <DataBlock mspId={mspId} isAdmin={isAdmin} model={model} />
         </div>
     )
 }
 
 export class RootWidget extends ReactWidget {
-    private commands: any;
+    private _model: KernelModel;
     /**
      * Constructs a new CounterWidget.
      */
-    constructor(commands: any) {
+    constructor(commands: any, model: KernelModel) {
       super();
       this.addClass('jp-ReactWidget');
-      this.commands = commands;
+      this._model = model;
     }
   
     render(): JSX.Element {
-      return <RootComponent commands={this.commands} />;
+      return <RootComponent commands={null} model={this._model} />;
     }
   }
 

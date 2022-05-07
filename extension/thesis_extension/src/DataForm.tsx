@@ -5,6 +5,9 @@ const DataForm = ({ mspId, ...props }: any) : JSX.Element => {
     const [dataBlock, setDataBlock] = useState<any>({});
     const [storageType, setStorageType] = useState<string>('');
     const [storageTypeDetails, setStorageTypeDetails] = useState<any>({});
+    const [jsonError, setJsonError] = useState<string>('');
+    const [json, setJson] = useState<any>('');
+    const [msg, setMsg] = useState<string>("");
 
     const updateDataBlock = (field: string, value: any) => {
         let updateDataBlock = {
@@ -34,24 +37,42 @@ const DataForm = ({ mspId, ...props }: any) : JSX.Element => {
         finalDataBlock[storageType] = storageTypeDetails;
         finalDataBlock['owner'] = getOwner();
         finalDataBlock['type'] = 'data';
+        finalDataBlock['dirStructure'] = json;
         const payload = {
             'payload': finalDataBlock
         }
+        debugger;
         console.log(payload);
         postData(payload, mspId).then((response: any) => {
             if (response.status == 'Accepted') {
-                alert("Transaction Submitted.")
+                showMsg("Transaction Submitted.")
                 setDataBlock(null);
                 setStorageType('');
                 setStorageTypeDetails(null);
             } else {
-                alert("Failed to submit transaction");
+                showMsg("Failed to submit transaction");
             }
         })
     };
 
+    const showMsg = (msg: string) => {
+      setMsg(msg);
+      setTimeout(() => setMsg(''), 5000);
+    }; 
+
+    const validateJson = (value: string) => {
+        try {
+            let parsedJson = JSON.parse(value);
+            setJsonError("");
+            setJson(parsedJson);
+        } catch {
+            setJsonError("Invalid JSON")
+        }
+    }
+
     return (
       <div>
+        {msg != null && msg != '' ? <p className='message'>{msg}</p> : <></>}
         <div className='input-group'>
             <p className='label'>Data Title</p>
             <input type={'text'} className={'text-input'} value={dataBlock?.title} onChange={(e) => updateDataBlock('title', e.target.value)} />
@@ -59,6 +80,11 @@ const DataForm = ({ mspId, ...props }: any) : JSX.Element => {
         <div className='input-group'>
             <p className='label'>Data Description</p>
             <input type={'text'} className={'text-input'}  value={dataBlock?.description} onChange={(e) => updateDataBlock('description', e.target.value)} />
+        </div>
+        <div className='input-group'>
+            <p className='label'>Directory Structure</p>
+            <textarea className={'text-input'} value={dataBlock?.dirStructure} onChange={(e) => validateJson(e.target.value)} />
+            {jsonError != null || jsonError != '' ? <p className='red'>{jsonError}</p> : <></>}
         </div>
         <div className='input-group'>
             <p className='label'>Storage Type</p>

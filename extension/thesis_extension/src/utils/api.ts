@@ -1,6 +1,9 @@
 import axios from 'axios';
+import { URLExt } from '@jupyterlab/coreutils';
 
-const HOST = 'http://host.docker.internal:3000';
+import { ServerConnection } from '@jupyterlab/services';
+
+const HOST = 'http://blockchain-service:3000';
 
 // Get List of all data
 const getAllData = async (wallet: string) : Promise<any> => {
@@ -116,6 +119,24 @@ const deleteData = async (id: string, wallet: string) : Promise<{}> => {
     }
 }
 
+const postJupyterApi = async (endpoint: string, init: RequestInit) : Promise<any> => {
+    const settings = ServerConnection.makeSettings();
+    const requestUrl = URLExt.join(
+        settings.baseUrl,
+        'thesis-extension',
+        endpoint
+    );
+
+    let response: Response;
+
+    try {
+        response = await ServerConnection.makeRequest(requestUrl, init, settings);
+        return await response.json();
+    } catch (error) {
+        throw new ServerConnection.NetworkError(error);
+    }
+}
+
 export {
     getAllData,
     getData,
@@ -123,5 +144,6 @@ export {
     getTransaction,
     deleteData,
     postData,
-    leaseData
+    leaseData,
+    postJupyterApi
 }

@@ -20,5 +20,5 @@
     "target": "es2017",
     "types": []
   },
-  "include": ["src/*", "src/utils/*"]
+  "include": ["src/*", "src/model.ts", "src/panel.ts", "src/utils/*"]
 }

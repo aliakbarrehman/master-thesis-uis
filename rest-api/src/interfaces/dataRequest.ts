@@ -5,6 +5,7 @@ interface DataBlockRequest {
     description: string,
     owner: string,
     storageType: string, 
+    dirStructure: any,
     azure: AzureData,
     lease: string,
     local: LocalData
