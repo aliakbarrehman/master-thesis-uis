@@ -1,0 +1,15 @@
+api_version: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ volumeClaim['name'] }}-pvc
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: {{ volumeClaim['size'] }}
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      usage: {{ volumeClaim['usage'] }}

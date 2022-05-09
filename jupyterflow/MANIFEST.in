@@ -1,2 +1,0 @@
-include templates/*
-recursive-include jupyterflow/templates *

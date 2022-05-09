@@ -5,8 +5,8 @@ proxy:
 singleuser:
   image:
     name: aliakbarrehman/jupyterhub
-    tag: v1.0
-    cmd: ["/bin/bash", "-c", "conda install -c conda-forge nb_conda_kernels && jupyterhub-singleuser --SingleUserNotebookApp.default_url=/lab"]
+    tag: latest
+    # cmd: ["/bin/bash", "-c", "conda install -c conda-forge nb_conda_kernels && jupyterhub-singleuser --SingleUserNotebookApp.default_url=/lab"]
   defaultUrl: "/lab"
   extraEnv:
     JUPYTERHUB_SINGLEUSER_APP: "jupyter_server.serverapp.ServerApp"

@@ -1,0 +1,26 @@
+# spec:
+#   image: jupyter/datascience-notebook:latest
+#   imagePullPolicy: Always
+#   imagePullSecrets:
+#   -  name: "default"
+#   env:
+#   - name: "CUSTOM_KEY"
+#     value: "CUSTOM_VAL"
+#   resources:
+#     requests:
+#       cpu: 500m
+#       memory: 500Mi
+#     limits:
+#       cpu: 500m
+#       memory: 500Mi
+#   nodeSelector: {}
+#   runAsUser: 1000
+#   runAsGroup: 100
+#   serviceAccountName: default
+#   volumes:
+#   - name: nas001
+#     persistentVolumeClaim:
+#       claimName: nas001
+#   volumeMounts:
+#   - name: nas001
+#     mountPath: /nas001

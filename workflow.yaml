@@ -1,0 +1,20 @@
+# workflow.yaml
+# Volume: name is the same as pvc name
+# Volume: path will be inside the current user home
+jobs:
+- command: 'pwd' 
+- command: 'ls /home/jovyan/'
+- command: 'ls -la /home/jovyan/uis'
+  volumes:
+  - id: '6de22e830ce4661cbeb6b9b2167c3f206dd946eb89beecd2f20bb17e85e64995'
+    name: 'uis'
+    path: '/home/jovyan/uis'
+- command: 'ls'
+
+# Job index starts at 1.
+dags:
+- 1 >> 2
+- 1 >> 3
+- 1 >> 4
+
+git push https://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@github.com/aliakbarrehman/jupyterflow.git

@@ -1,0 +1,25 @@
+api_version: v1
+kind: PersistentVolume
+metadata:
+  name: {{ volume['name'] }}-pv
+  # The label is used for matching the exact claim
+  labels:
+    usage: {{ volume['usage'] }}
+spec:
+  capacity:
+    storage: {{ volume['size'] }}
+  volumeMode: Filesystem
+  accessModes:
+  - ReadOnlyMany
+  # persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: {{ volume['path'] }}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {{ volume['hostname'] }}

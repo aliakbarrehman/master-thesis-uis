@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ volume['name'] }}-pv
+  # The label is used for matching the exact claim
+  labels:
+    usage: {{ volume['usage'] }}
+spec:
+  capacity:
+    storage: {{ volume['size'] }}
+  accessModes:
+    - ReadOnlyMany
+  # persistentVolumeReclaimPolicy: Retain
+  azureFile:
+    # Replace with your secret name
+    secretName: {{ volume['secret'] }}
+    # Replace with correct storage share name
+    shareName: {{ volume['shareName'] }}
+    # In case the secret is stored in a different namespace
+    secretNamespace: {{ volume['secretNamespace'] }}
+    readOnly: true

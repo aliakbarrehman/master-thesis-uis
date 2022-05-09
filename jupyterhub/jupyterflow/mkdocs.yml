@@ -1,0 +1,33 @@
+site_name: JupyterFlow - Run your workflow on JupyterHub
+repo_url: https://github.com/hongkunyoo/jupyterflow
+strict: true
+theme:
+  name: material
+  logo: images/logo.png
+  palette:
+    primary: blue
+  font:
+    text: Work Sans
+google_analytics:
+- G-Y2NB80X1WG
+- auto
+markdown_extensions:
+  - codehilite
+  - admonition
+  # - pymdownx.superfences
+  # - pymdownx.details
+  - toc:
+      permalink: true
+nav:
+  - Overview: README.md
+  - get-started.md
+  - Setup:
+    - jupyterhub.md
+    - kubeflow.md
+  - how-it-works.md
+  - Examples:
+    - examples/basic.md
+    - examples/ml-pipeline.md
+  - configuration.md
+  - cli-ref.md
+  - Releases ⧉: https://github.com/hongkunyoo/jupyterflow/releases
