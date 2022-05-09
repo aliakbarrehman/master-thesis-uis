@@ -2,7 +2,7 @@
 
 The overall architecture of the project is summarized in the following diagram. The Parts in green are in the scope of this project. The red arrows indicate integrations between other parts of the proof of concept that are not in place yet.
 
-![Architecture Diagram](https://github.com/aliakbarrehman/master-thesis-uis/blob/master/Overview.jpg?raw=true)
+![Architecture Diagram](https://github.com/aliakbarrehman/master-thesis-uis/blob/master/resources/Overview.jpg?raw=true)
 
 The scope of this project comprises of following parts:
 1. Hyperledger Network (with 3 Organizations and chaincode for maintaining data ledger)
