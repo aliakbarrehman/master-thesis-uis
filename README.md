@@ -55,6 +55,7 @@ jupyterflow run -f workflow.yaml
     * **Alternatively** for more granular control you can install requirements and run `cd hyperledger-network` and then `./start.sh`
     * Run `./start.network.sh`
     * Run `cd ../rest-api` and then `docker-compose up -d`
+    * For testing import `resource/endpoints.json` and create some datablocks on blockchain
 3. On k8s machine
     * **Pre-Requisites** Docker, NodeJS, NPM, Python, PIP, Kubernetes and helm
     * Clone this repository (`git clone https://github.com/aliakbarrehman/jupyterflow && cd master-thesis-uis`)

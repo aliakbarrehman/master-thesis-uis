@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "e3ccff09-1e3f-4893-869c-fa4a46e7f44d",
+		"name": "Thesis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Job",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "walletId",
+						"value": "UiSMSP",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "51.120.92.107:3000/job/",
+					"host": [
+						"51",
+						"120",
+						"92",
+						"107"
+					],
+					"port": "3000",
+					"path": [
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transaction",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "walletid",
+						"value": "UiSMSP",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "51.120.92.107:3000/transaction/",
+					"host": [
+						"51",
+						"120",
+						"92",
+						"107"
+					],
+					"port": "3000",
+					"path": [
+						"transaction",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "walletid",
+						"value": "UiSMSP",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "51.120.92.107:3000/data/6de22e830ce4661cbeb6b9b2167c3f206dd946eb89beecd2f20bb17e85e64995",
+					"host": [
+						"51",
+						"120",
+						"92",
+						"107"
+					],
+					"port": "3000",
+					"path": [
+						"data",
+						"6de22e830ce4661cbeb6b9b2167c3f206dd946eb89beecd2f20bb17e85e64995"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Data",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "walletid",
+						"value": "UiSMSP",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "51.120.92.107:3000/data/",
+					"host": [
+						"51",
+						"120",
+						"92",
+						"107"
+					],
+					"port": "3000",
+					"path": [
+						"data",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "walletid",
+						"value": "UiSMSP",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "51.120.92.107:3000/data",
+					"host": [
+						"51",
+						"120",
+						"92",
+						"107"
+					],
+					"port": "3000",
+					"path": [
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "walletid",
+						"value": "UiSMSP",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"type\": \"data\",\r\n        \"title\": \"UiS\",\r\n        \"description\": \"UiS Test Data Block\",\r\n        \"owner\": \"UiS\",\r\n        \"storageType\": \"local\",\r\n        \"dirStructure\": {\r\n            \"europe\": {\r\n                \"poland\": {},\r\n                \"france\": {},\r\n                \"spain\": {},\r\n                \"greece\": {},\r\n                \"UK\": {},\r\n                \"germany\": {}\r\n            },\r\n            \"Asia\": {\r\n                \"india\": {}\r\n            },\r\n            \"Africa\": {}\r\n        },\r\n        \"azure\": {\r\n            \"name\": \"\",\r\n            \"key\": \"\",\r\n            \"fileshareName\": \"\"\r\n        },\r\n        \"local\": {\r\n            \"hostname\": \"docker-desktop\",\r\n            \"path\": \"/c/Users/Rehman/Downloads/Thesis/master-thesis-uis/hyperledger-network/jupyterhub/volumes/uis\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "51.120.92.107:3000/data",
+					"host": [
+						"51",
+						"120",
+						"92",
+						"107"
+					],
+					"port": "3000",
+					"path": [
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lease Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "walletid",
+						"value": "UiSMSP",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"lease\",\r\n    \"to\": \"\"\r\n}"
+				},
+				"url": {
+					"raw": "51.120.92.107:3000/data/lease/6de22e830ce4661cbeb6b9b2167c3f206dd946eb89beecd2f20bb17e85e64995",
+					"host": [
+						"51",
+						"120",
+						"92",
+						"107"
+					],
+					"port": "3000",
+					"path": [
+						"data",
+						"lease",
+						"6de22e830ce4661cbeb6b9b2167c3f206dd946eb89beecd2f20bb17e85e64995"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "walletid",
+						"value": "UiSMSP",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"title\": \"New UiS Test Data\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "51.120.92.107:3000/data/",
+					"host": [
+						"51",
+						"120",
+						"92",
+						"107"
+					],
+					"port": "3000",
+					"path": [
+						"data",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
