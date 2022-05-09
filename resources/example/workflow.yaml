@@ -1,0 +1,20 @@
+# workflow.yaml
+# Volume: name is the same as pvc name
+# Volume: path will be inside the current user home
+jobs:
+- command: 'ls /home/jovyan/'
+- command: 'python uis.py'
+  volumes:
+  - id: '6de22e830ce4661cbeb6b9b2167c3f206dd946eb89beecd2f20bb17e85e64995'
+    name: 'uis'
+    path: '/home/jovyan/uis'
+- command: 'python uio.py'
+  volumes:
+  - id: 'e8a019a72cd8da522f620ab5561f5ada0143ea136ef71d8e601f6007c9386269'
+    name: 'uio'
+    path: '/home/jovyan/uio'
+
+# Job index starts at 1.
+dags:
+- 1 >> 2
+- 2 >> 3
