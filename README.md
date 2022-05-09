@@ -10,7 +10,7 @@ The scope of this project comprises of following parts:
 3. Jupyterhub on Kubernetes (k8s) where each organization can contribute nodes
     * Kubernetes Cluster with Jupyterhub and Argo spun up
     * DataExplorer Extension for Jupyterhub
-    * Customized Jupyterflow ([GitHub](https://github.com/aliakbarrehman/jupyterflow)) Forked from ([GitHub](https://github.com/hongkunyoo/jupyterflow))
+    * Customized Jupyterflow ([aliakbarrehman/jupyterflow](https://github.com/aliakbarrehman/jupyterflow)) Forked from ([hongkunyoo/jupyterflow](https://github.com/hongkunyoo/jupyterflow))
 
 #### How it Works
 1. Data that is availabe for consumption has its meta data available on blockchain
