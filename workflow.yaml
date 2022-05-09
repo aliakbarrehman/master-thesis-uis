@@ -16,5 +16,3 @@ dags:
 - 1 >> 2
 - 1 >> 3
 - 1 >> 4
-
-git push https://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@github.com/aliakbarrehman/jupyterflow.git
