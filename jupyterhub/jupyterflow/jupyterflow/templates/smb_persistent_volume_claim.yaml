@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ volumeClaim['name'] }}-pvc
+spec:
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: {{ volumeClaim['size'] }}
+  volumeName: {{ volumeClaim['name'] }}-pv
+  storageClassName: smb

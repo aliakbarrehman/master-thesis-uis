@@ -37,6 +37,14 @@ def azure_persistent_volume_claim(volumeClaim, runtime):
     template = get_template('azure_persistent_volume_claim.yaml')
     return template.render(volumeClaim=volumeClaim, runtime=runtime)
 
+def smb_persistent_volume(volume, runtime):
+    template = get_template('smb_persistent_volume.yaml')
+    return template.render(volume=volume, runtime=runtime)
+
+def smb_persistent_volume_claim(volumeClaim, runtime):
+    template = get_template('smb_persistent_volume_claim.yaml')
+    return template.render(volumeClaim=volumeClaim, runtime=runtime)
+
 def k8s_secret(secret, runtime):
     template = get_template('k8s_secret.yaml')
     return template.render(secret=secret, runtime=runtime)

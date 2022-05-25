@@ -8,10 +8,10 @@ metadata:
     volume.beta.kubernetes.io/storage-class: ""
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   resources:
     requests:
-      storage: 10Gi
+      storage: {{ volumeClaim['size'] }}
   selector:
     # To make sure we match the claim with the exact volume, match the label
     matchLabels:

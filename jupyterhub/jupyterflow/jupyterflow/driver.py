@@ -50,8 +50,8 @@ def run(filename, command, output, dry_run):
                 mount_options, volume_type = utils.getVolumeDetails(volume)
                 if (volume_type == 'azure'):
                     secret_name = mount_options['volume_name'] + '-secret'
-                    create_secret(client, secret_name, mount_options['name'], mount_options['key'])
-                    azure_persistent_volume(client, mount_options['volume_name'], mount_options['size'], secret_name, mount_options['fileshareName'], namespace)
+                    create_secret(client, secret_name, mount_options['name'], mount_options['key'], namespace)
+                    azure_persistent_volume(client, mount_options['volume_name'], mount_options['size'], secret_name, mount_options['name'], mount_options['fileshareName'], namespace)
                 elif (volume_type == 'local'):
                     local_persistent_volume(client, mount_options['volume_name'], mount_options['size'], mount_options['path'], mount_options['hostname'], namespace);
                 else:

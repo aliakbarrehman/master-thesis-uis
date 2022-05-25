@@ -6,7 +6,7 @@ from kubernetes import client
 from kubernetes.client.rest import ApiException
 
 from .utils import check_null_or_empty, handle_exception
-from .classes import LocalVolume, AzureVolume, K8sSecret
+from .classes import LocalVolume, AzureVolume, K8sSecret, SmbVolume
 
 def create_object(body, namespace):
     group, version = body['apiVersion'].split('/')
@@ -75,8 +75,8 @@ def local_persistent_volume(k8s_client, name, size, path, hostname, namespace):
     volume = LocalVolume(name, size, path, hostname)
     return _create_persistent_volume(k8s_client, volume, namespace, 'local')
 
-def azure_persistent_volume(k8s_client, name, size, secret, shareName, namespace):
-    volume = AzureVolume(name, size, secret, shareName)
+def azure_persistent_volume(k8s_client, name, size, secret, accountName, shareName, namespace):
+    volume = SmbVolume(name, size, secret, accountName, shareName, namespace)
     return _create_persistent_volume(k8s_client, volume, namespace, 'azure')
     
 def create_secret(k8s_client, name, accountName, accountKey, namespace='default'):
@@ -142,5 +142,5 @@ def _create_azure_persistent_volume(k8s_client, volume):
 
 def _create_azure_persistent_volume_claim(k8s_client, volume, namespace):
     volume_claim_body = volume.get_persistent_volume_claim();
-    api_response = k8s_client.create_namespaced_persistent_volume_claim(namespace, volume_claim_body, namespace)
+    api_response = k8s_client.create_namespaced_persistent_volume_claim(namespace, volume_claim_body)
     return api_response

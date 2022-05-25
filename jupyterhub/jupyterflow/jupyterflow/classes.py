@@ -38,11 +38,29 @@ class AzureVolume:
         pvc = render.azure_persistent_volume_claim(self, runtime)
         return yaml.safe_load(pvc)
 
+class SmbVolume:
+    def __init__(self, name, size, secret, storageAccountName, shareName, secretNamespace='default'):
+        self.name = name
+        self.usage = name + '-' + str(random.random() * 100000) # Generating a random usage so user cannot mount this volume to another claim
+        self.size = size
+        self.secret = secret
+        self.storageAccountName = storageAccountName
+        self.shareName = shareName
+        self.secretNamespace = secretNamespace
+    
+    def get_persistent_volume(self):
+        pv = render.smb_persistent_volume(self, runtime)
+        return yaml.safe_load(pv)
+    
+    def get_persistent_volume_claim(self):
+        pvc = render.smb_persistent_volume_claim(self, runtime)
+        return yaml.safe_load(pvc)
+
 class K8sSecret:
     def __init__(self, name, accountName, accountKey):
         self.name = name
-        self.base64AccountName = encode_base64(accountName)
-        self.base64AccountKey = encode_base64(accountKey)
+        self.username = encode_base64(accountName)
+        self.password = encode_base64(accountKey)
         
     def get_secret(self):
         secret = render.k8s_secret(self, runtime)
