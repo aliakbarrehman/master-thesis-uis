@@ -3,6 +3,14 @@ FROM jupyterhub/k8s-singleuser-sample:1.2.0
 ADD requirements.txt /tmp/requirements.txt
 RUN python -m pip install -r /tmp/requirements.txt
 
+# Install CIFS Utils
+USER root
+RUN apt-get update && apt-get install cifs-utils -y
+RUN apt-get update && apt-get install nfs-common -y
+RUN chmod 777 /sbin/mount.cifs
+RUN chmod 777 /sbin/mount.nfs
+
+USER jovyan
 # Install extensions
 RUN pip install jupyter_contrib_nbextensions
 RUN jupyter contrib nbextension install --sys-prefix

@@ -74,20 +74,20 @@ const DataForm = ({ mspId, ...props }: any) : JSX.Element => {
         {msg != null && msg != '' ? <p className='message'>{msg}</p> : <></>}
         <div className='input-group'>
             <p className='label'>Data Title</p>
-            <input type={'text'} className={'text-input'} value={dataBlock?.title} onChange={(e) => updateDataBlock('title', e.target.value)} />
+            <input type={'text'} className={'text-input'} value={dataBlock?.title} onChange={(e: any) => updateDataBlock('title', e.target.value)} />
         </div>
         <div className='input-group'>
             <p className='label'>Data Description</p>
-            <input type={'text'} className={'text-input'}  value={dataBlock?.description} onChange={(e) => updateDataBlock('description', e.target.value)} />
+            <input type={'text'} className={'text-input'}  value={dataBlock?.description} onChange={(e: any) => updateDataBlock('description', e.target.value)} />
         </div>
         <div className='input-group'>
             <p className='label'>Directory Structure</p>
-            <textarea className={'text-input'} value={dataBlock?.dirStructure} onChange={(e) => validateJson(e.target.value)} />
+            <textarea className={'text-input'} value={dataBlock?.dirStructure} onChange={(e: any) => validateJson(e.target.value)} />
             {jsonError != null || jsonError != '' ? <p className='red'>{jsonError}</p> : <></>}
         </div>
         <div className='input-group'>
             <p className='label'>Storage Type</p>
-            <select className='dropdown' value={storageType} onChange={(e) => setStorageType(e.target.value)}>
+            <select className='dropdown' value={storageType} onChange={(e: any) => setStorageType(e.target.value)}>
                 <option value='none'>Select Storage Type</option>
                 <option value='azure'>Azure</option>
                 <option value='local'>Local</option>
@@ -97,17 +97,17 @@ const DataForm = ({ mspId, ...props }: any) : JSX.Element => {
             <>
                 <div className='input-group'>
                     <p className='label'>Storage Account Name</p>
-                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.name} onChange={(e) => updateStorageTypeDetails('name', e.target.value)} />
+                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.name} onChange={(e: any) => updateStorageTypeDetails('name', e.target.value)} />
                 </div>
 
                 <div className='input-group'>
                     <p className='label'>Storage Account Key</p>
-                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.key} onChange={(e) => updateStorageTypeDetails('key', e.target.value)} />
+                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.key} onChange={(e: any) => updateStorageTypeDetails('key', e.target.value)} />
                 </div>
 
                 <div className='input-group'>
                     <p className='label'>Fileshare Name</p>
-                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.fileshareName} onChange={(e) => updateStorageTypeDetails('fileshareName', e.target.value)} />
+                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.fileshareName} onChange={(e: any) => updateStorageTypeDetails('fileshareName', e.target.value)} />
                 </div>
             </> : <></>
         }
@@ -115,12 +115,12 @@ const DataForm = ({ mspId, ...props }: any) : JSX.Element => {
             <>
                 <div className='input-group'>
                     <p className='label'>Hostname</p>
-                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.hostname} onChange={(e) => updateStorageTypeDetails('hostname', e.target.value)} />
+                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.hostname} onChange={(e: any) => updateStorageTypeDetails('hostname', e.target.value)} />
                 </div>
 
                 <div className='input-group'>
                     <p className='label'>Hostpath</p>
-                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.path} onChange={(e) => updateStorageTypeDetails('path', e.target.value)} />
+                    <input type={'text'} className={'text-input'} value={storageTypeDetails?.path} onChange={(e: any) => updateStorageTypeDetails('path', e.target.value)} />
                 </div>
             </> : <></>
         }

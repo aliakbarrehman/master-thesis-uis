@@ -3,7 +3,7 @@ import { URLExt } from '@jupyterlab/coreutils';
 
 import { ServerConnection } from '@jupyterlab/services';
 
-const HOST = 'http://51.120.92.107:3000';
+const HOST = 'http://51.13.84.103:3000';
 
 // Get List of all data
 const getAllData = async (wallet: string) : Promise<any> => {

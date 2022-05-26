@@ -71,6 +71,10 @@ helm repo update
 # StorageClass name will be nfs-server
 helm install nfs-server stable/nfs-server-provisioner
 
+echo "Installing CSI Driver SMB"
+helm repo add csi-driver-smb https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+helm install csi-driver-smb csi-driver-smb/csi-driver-smb --namespace kube-system --version v1.6.0
+
 echo "Upgrading Jupyterhub with $CONFIG_YAML"
 helm upgrade --cleanup-on-fail --install jhub jupyterhub/jupyterhub --namespace jhub --create-namespace --version=1.2.0 --values $CONFIG_YAML --timeout=10m --debug
 

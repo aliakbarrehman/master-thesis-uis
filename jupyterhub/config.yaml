@@ -2,6 +2,11 @@
 proxy:
   secretToken: "8e2a01912c52d65f6516b2e4bda86035d35f48ca631ef33375e06afcf94a2b9f"   # openssl rand -hex 32
 
+hub:
+  containerSecurityContext:
+    capabilities:
+      add: ["SYS_ADMIN", "DAC_READ_SEARCH"]
+
 singleuser:
   image:
     name: aliakbarrehman/jupyterhub
@@ -10,6 +15,7 @@ singleuser:
   defaultUrl: "/lab"
   extraEnv:
     JUPYTERHUB_SINGLEUSER_APP: "jupyter_server.serverapp.ServerApp"
+    GRANT_SUDO: "yes"
   serviceAccountName: default
   storage:
     type: dynamic
