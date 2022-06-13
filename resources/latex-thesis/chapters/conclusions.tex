@@ -1,0 +1,46 @@
+%!TEX root = ../thesis.tex
+
+\chapter{Conclusions and Future Work}
+\label{ch:conclusion}
+In this thesis, we present a Proof of Concept (PoC) that allows data sharing between untrusting organizations to run complex workflows on the data while also maintaining the ownership of the data. Another goal achieved from such a system is that we remove the need to develop the expertise of users to write complex algorithms following the Hadoop MapReduce pattern.
+
+\bigskip
+We go through the scenarios that could benefit from such a system and some background about research in this direction as well as tools and technologies we have used. We have proposed a solution to allow data sharing and workflow execution. The proposed system makes use of Hyperledger Fabric to establish and maintain a blockchain between organizations and JupyterHub on Kubernetes for users to write code and run workflows. We build a Docker image with Kubernetes service account configured and JupyterHub Extension and JupyterFlow already installed on it and use the said image for JupyterHub. Each logged-in user gets their own instance of Jupyter hosted on the Kubernetes server. And after writing code and triggering workflow, the data is mounted as persistent volumes on the Kubernetes pods where it is used. And finally, we demonstrate how we set up our test environments and ran linear and parallel workflows on the system, consuming data from Azure and Kubernetes nodes.
+
+\bigskip
+The system is far from a production-ready system and can be improved upon in many different aspects regarding security and capabilities. Next up we discuss the shortcomings in our system and the future directions for the thesis and how the research in this domain can be carried forward.
+
+\section{Integration with Relevant Projects}
+As mentioned in the chapter on introduction, this proof of concept is being developed in parallel to a few other projects aimed toward a solution with access control and motivating organizations to make and join such consortiums. As demonstrated in \ref{fig:overview} the scope of this thesis was to design and test a system that can be used to orchestrate all the moving parts and enable users to explore the datasets from the blockchain and consume the said datasets for analytics.
+
+\bigskip
+During this thesis, we have been using test accounts to log into the JupyterHub server. Moreover, for interaction with the blockchain the REST API sets up a file system wallet to identify the users when invoking chaincode. There is a thesis that is aiming to develop a distributed identity token system that maintains the users and their access control on the blockchain itself. As the next natural step to take this proof of concept further is to integrate it with the aforementioned project. That will allow not only this system users to log in to JupyterHub with this but also remove the need for each organization to maintain their respective wallets.
+
+\bigskip
+\cite{nft-thesis} Is developing a system that represents resources as a token with stakes of different organizations in the token. If we integrate this solution into our proof of concept, we can store the computed results onto the blockchain and Inter-Planetary File System (IPFS) as well, and anytime the results are used we can incentivize the organizations with a stake in that token to motivate organizations to contribute. Moreover, we can take inspiration to use IPFS to store metadata of the datasets instead of storing it directly on the blockchain and peer nodes.
+
+\section{Secure Transfer of Storage Secrets}
+In the current implementation once the user elects to use a dataset the JupyterHub extension that we have developed does a couple of steps to ensure its usage.
+\begin{itemize}
+    \item First of all the extension submits a transaction to the blockchain to lease the dataset, so as to avoid others leasing it at the same time causing conflicts.
+    \item After the transaction, the extension reads decrypted values of sensitive information that will be used to mount the actual data inside Kubernetes.
+    \item Now the extension creates a directory structure in the JupyterHub environment for the user to write the code following that directory structure and avoid errors when running the workflow.
+    \item As a final step the extension creates a hidden file in the environment with the sensitive information that can be used to mount the data as volume. The JupyterFlow plugin uses this hidden file to mount the data onto Kubernetes before triggering the Argo workflow.
+\end{itemize}
+
+As apparent from the last step mentioned above, the security we have at the moment is only security by obscurity and is very easy to bypass because the user can view the hidden files very easily either through the terminal in the Jupyter Instance of or through python code. The security regarding this can be improved upon a lot and the flow of information from the extension to the JupyterFlow plugin can be improved and made secure. Either by limiting users to not being able to access the file or by developing a protocol for the transfer of information directly between these components instead of using the file system. 
+
+\section{Clean Up of Resources}
+When the user elects to consume a dataset and after the execution of the workflow finishes the volume claim in Kubernetes needs to be released and volume to be deleted. Moreover, a transaction should be submitted to the blockchain notifying the release of the resource so as another organization may use that data.
+
+\bigskip
+Also, there could be the need to do a few more steps such as computing the result NFT and committing it to the chain when the computation has finished when integrating with \cite{nft-thesis}.
+
+\bigskip
+The next iteration of this proof of concept could leverage exit handlers \cite{argo-exit-handler} provided by Argo to trigger an HTTP endpoint that can perform all the above-mentioned steps and cleans up the resources or could use a shell script to clean up. That if triggering a shell script the workflow role created for Argo would need privileges to clean up the resources from Kubernetes. It does not need access to create or update the Persistent Volume and Persistent Volume Claim objects but rather just the permissions to delete these objects.
+
+\bigskip
+And to avoid users running a workflow that never finishes the keeps the dataset occupied for a longer period of time we should introduce a scheduled trigger to force the release of the resources.
+
+\section{Extending Capabilities of JupyterFlow}
+Apart from changing the patterns to improve security and implementing cleanup of resources the capabilities of the JupyterFlow plugin could be improved upon more. We could integrate more and more storage solutions into the system. So that the next phase of the thesis would support the mounting of Google Cloud Storage, Amazon S3 Buckets, Network File Systems, and many more.

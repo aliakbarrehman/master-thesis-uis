@@ -1,0 +1,41 @@
+%!TEX root = ../thesis.tex
+
+\chapter{Related Work}
+\label{ch:related}
+The traditional architecture of applications forces the participating users to trust a central authority. Such an architecture is proving to be outdated as we continue to realize the importance of our data. \cite{p2p-bitcoin} Proposed a system employing the blockchain technology to build a currency called Bitcoin that is maintained on a completely distributed ledger between untrusting parties. The paper highlights the algorithm to update the ledger without inserting malicious transactions. The paper proved that blockchain could be employed to maintain a central ledger without the need for a central authority. And the ledger records a tamper-proof history of transactions continuously.
+
+\bigskip
+Some of the most important services today are seemingly offered free of cost. However, the cost of these services is our personal data, and to use those indispensable services we are forced to rely on third-party organizations. This is the entire idea behind distributed apps and Web3.0 as discussed in detail here \cite{web3.0}. Web3.0 employs the concept behind the blockchain to develop completely distributed applications allowing complete freedom and Independence from third-party corporations.
+
+\bigskip
+Since 2008 when Bitcoin first came out as the first application of the blockchain concept, Web3.0 has been gaining continuous momentum. IBM and the Linux foundation developed \cite{ibm-hyperledger} Hyperledger Fabric, a private-permissioned blockchain to facilitate distributed application development between enterprise organizations. In \cite{x-org-workflow}, researchers propose a system to improve the current process of funds transfer between banks and parties from different countries for trading. The process usually takes days or weeks. The proposed system, however, developed using Hyperledger, automates a lot of the processes using smart contracts and reduces the time drastically. The research suggests a prototype based on blockchain to provide and enforce a workflow ensuring valid transactions between banks. 
+
+\bigskip
+\cite{collab-bw-adversaries} Explores the use of blockchain to enforce adversary parties to adhere to a predefined workflow. They however used the Ethereum blockchain providing a permissionless and public platform whereas we will be implementing our solution on Hyperledger to avoid using a public blockchain and only allow permissioned entities to join and keep the data private among organizations with a common interest.
+
+\bigskip
+Blockchain can provide a tamper-proof, central ledger without the need for a central authority. Mainly due to the fact that each block is vetted before addition but once added becomes a permanent part of the chain. This leads to complications when it comes to ownership of data and when the entity might want to remove its data. \cite{gdpr-compliant} Discusses among other things the very same idea to make the blockchain GDPR compliant so that once the data has served its purpose it can be purged. The proposed solution uses off-chain technology for each organization to maintain a set of encryption keys and only commit encrypted data to the chain. And once the encryption key is destroyed the on-chain data becomes useless. We employ a similar solution to share and maintain sensitive data on-chain. We employ the same technology to allow organizations to share the datasets and avoid committing any sensitive information to the blockchain.
+
+\bigskip
+In \cite{totem} and \cite{secure-computed-blockchain}, rather than compiling the datasets and running algorithms, the authors discuss the approach of dockerizing the code and running the containers on machines hosting the data. So the computation is moved to the place of residence of data rather than the other way around resulting in a solution where the data is not exposed to the user for computation. The system takes Map-Reduce code as input from the user and triggers them to run on the system hosting the data. Their proposed architecture makes use of a ledger in the Hyperledger Fabric network for governing access to remote resources and Hadoop for running Map-Reduce jobs on the system hosting the data.
+
+\bigskip
+The paper proposes a concept similar to that of Ethereum gas to constrain malicious users from running malicious code in the system. The users will obtain a fixed totem value that will gradually be used as the code is running. Running out of totem value revokes the user's privileges to execute code. Our approach slightly differs from the TOTEM architecture in that Organizations can use their current or cloud for storing data as long as they contribute nodes to the Kubernetes cluster they can join the consortium. The users do not have to develop the expertise to write Map-Reduce jobs and can use any language and design patterns they prefer as long as it can work on a Jupyter instance. The datasets will be moved across the network introducing the network overhead as compared to \cite{secure-computed-blockchain} but removing the complexity of writing distributed code. And the end goal of the systems is the same, some code is executed on the dataset but the user never gets to see the data itself, and ownership of the data continues to belong to the owning organization. And our recommendation to prevent users from writing code that simply copies over the data or to prevent them from misusing the system is to later introduce the step where the request to run some code would be reviewed and approved by the owning organizations hence preventing malicious code from running.
+
+\bigskip
+\cite{jupyterflow} Presents a solution to construct and run workflows as a set of multiple jobs. Each job is a command to run on a pod and we can define dependencies between the jobs as Directed Acyclic Graphs (DAG). It takes as input a \lstinline{workflow.yaml} file describing the jobs and their dependencies, converts it into an Argo Workflow, and runs it on the Kubernetes cluster hence introducing the requirement that the JupyterHub setup on Kubernetes only can run JupyterFlow. Our contribution takes the JupyterFlow plugin a step further. We develop and integrate the capability of creating Persistent Volumes and using Persistent Volume Claims in generated Argo workflows to mount datasets from different sources for the jobs that need the data. We will look into the example workflow and implementation details in Chapter 4. \ref{lst:basic-jflow} Shows a simple \lstinline{workflow.yaml} file that JupyterFlow can consume currently.
+
+\begin{lstlisting}[caption={Example JupyterFlow workflow.yaml file having 5 jobs, from JupyterFlow official examples},label={lst:basic-jflow}]
+jobs:
+- bash hello.sh world
+- bash hello.sh bob
+- bash hello.sh foo
+- ls
+- echo 'jupyterflow is the best!'
+
+dags:
+- 1 >> 4
+- 2 >> 4
+- 3 >> 4
+- 4 >> 5
+\end{lstlisting}

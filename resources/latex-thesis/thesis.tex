@@ -1,0 +1,107 @@
+%!TEX TS-program = xelatex
+
+\documentclass[11pt,oneside]{book}
+\usepackage[english]{babel}
+\usepackage{uis-thesis}
+\usepackage{hyperref}
+\usepackage{lipsum}           % remove this line when you replaced all \lipsum commands
+\newgeometry{margin=40mm}     % defines the geometry for the document
+\setstretch{1.2}              % defines the default line spacing for the document
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage[backend=biber,bibencoding=latin1,sorting=none]{biblatex}
+\addbibresource{bibliography.bib}
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+% UiS recommends Georgia for the body text, but you are free to use another
+% font for the body text; if you want to use another font just remove this line.
+\setmainfont{Georgia}
+\usepackage{pdfpages}
+%-----------------------------------------------------------------
+\title{System for Workflow Design and Execution on Data Shared Between Untrusting Organizations for Analytics}
+\authors{Ali Akbar Rehman}
+\department{ide}
+\reporttype{master}
+\specialization{ds}
+% Uncomment only if your thesis has been granted restricted access
+% \restricted
+
+%-----------------------------------------------------------------
+\begin{document}
+\begin{titlepage}
+\includepdf{front-page}
+\end{titlepage}
+\uiscover{4}                  % pick color scheme 1-9
+\frontmatter
+\pagestyle{empty}
+\declaration
+\input{frontmatter/quote}
+\input{frontmatter/abstract}
+\input{frontmatter/ack}
+
+\tableofcontents
+
+% \input{frontmatter/abbrev}
+% \input{frontmatter/symbols}
+
+%-----------------------------------------------------------------
+\mainmatter	  % Begin normal, numeric (1,2,3...) page numbering
+
+% Include the chapters of the thesis, as separate files
+% Just uncomment the lines as you write the chapters
+
+\input{chapters/intro}
+\input{chapters/related}
+\input{chapters/background}
+\input{chapters/approach}
+\input{chapters/eval}
+\input{chapters/conclusions}
+
+%-----------------------------------------------------------------
+% Now begin the Appendices, including them as separate files
+
+\listoffigures
+\lstlistoflistings
+
+\appendix
+\input{appendices/instructions}
+%-----------------------------------------------------------------
+% \backmatter
+
+% \label{Bibliography}
+% \bibliographystyle{unsrtnat}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+% \bibliography{Bibliography}  % The references (bibliography) information are stored in the file named "Bibliography.bib"
+\printbibliography
+\uisbackcover
+\end{document}

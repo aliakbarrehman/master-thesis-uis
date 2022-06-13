@@ -1,0 +1,52 @@
+%!TEX root = ../thesis.tex
+
+\chapter{Code and Instructions}
+\label{apx:instructions}
+
+The GitHub Repository with the code and resources for this thesis can be found at \url{https://github.com/aliakbarrehman/master-thesis-uis}.
+
+\bigskip
+The code has the following directories:
+\begin{itemize}
+    \item \textbf{bin} This directory has the binaries for the Hyperledger Fabric commands. This is included in the repository to make this self-hosted without external dependencies to download and set up.
+    \item \textbf{hyperledger-network} The directory holds the configuration files, docker-compose files, chaincode, and scripts to spin up the network, add organizations and commit chaincode to the network.
+    \item \textbf{jupyterhub} This directory hosts everything JupyterHub-related. The root directory hosts the scripts, and configurations to build the image for JuptyerHub Kubernetes, and create the required service accounts and scripts to spin up the Kubernetes itself with JuptyerHub and Argo enabled.
+        \begin{itemize}
+            \item \textbf{extension} The directory contains the code for the extension for JupyterHub that enables exploration of datasets stored on the blockchain.
+            \item \textbf{jupyterflow} This directory hosts the code for the JupyterFlow plugin.
+        \end{itemize}
+    \item \textbf{resources} Resources directory has the architecture diagrams and endpoint information and examples.
+    \item \textbf{rest-api} REST API that interacts with the blockchain.
+\end{itemize}
+
+The video demo can be found in the repository as well.
+
+\section{Instructions}
+Following are the instructions to setup the project for testing.
+\begin{itemize}
+    \item Get a machine with a public IP that k8s cluster can call, Pre-Requisites Docker, Docker Compose, NodeJS and NPM.
+    \item SSH into the machine
+    \item Clone this repository \lstinline{git clone https://github.com/aliakbarrehman/jupyterflow && cd master-thesis-uis}
+    \item Run \lstinline{chmod +x spinUpNetwork.sh && ./spinUpNetwork.sh} that Installs the Pre-Reqs as well as spins up the network with keys in \lstinline{hyperledger-network/crypto-config} and spins up Rest API as well as REDIS Cache and MySQL DB
+    \item Alternatively for more granular control you can install requirements and run \lstinline{cd hyperledger-network && ./start.sh}
+    \item Run \lstinline{./start.network.sh}
+    \item Run \lstinline{cd ../rest-api and then docker-compose up -d}
+    \item For testing import \lstinline{resource/endpoints.json} into postman and create some datablocks on blockchain
+    \item On another machine. Pre-Requisites Docker, NodeJS, NPM, Python, PIP, Kubernetes and helm
+    \item Clone this repository \lstinline{git clone https://github.com/aliakbarrehman/jupyterflow && cd master-thesis-uis}
+
+    \item Change directory to jupyterhub \lstinline{cd jupyterhub}
+
+    \item Create a docker registry account and login to it docker \lstinline{login hub.docker.com}
+
+    \item Run with your own registry name e.g \lstinline{./buildJupyterhub aliakbarrehman/jupyterhub}. This script creates a k8s service account, packages extension from \lstinline{jupyterhub/extension/thesis_extension} (Some useful commands in \lstinline{extension/usefulCommandsForDevelopment.sh} for development), packages extension from \lstinline{jupyterhub/jupyterflow} and builds a docker image with all the previous packages installed and configured (This image will be used for spinning up a users notebooks / JupyterHub instances and pushes that image)
+
+    \item Change \lstinline{singleuser.image.name} and \lstinline{singleuser.image.tag} in \lstinline{jupyterhub/config.yaml} with your own
+
+    \item Change IP in \lstinline{jupyterhub/blockchain-service.yaml} with the public IP of the Hyperledger network
+
+    \item Change IP in \lstinline{jupyterhub/extension/thesis_extension/src/utils/api.ts} with the public IP of the Hyperledger  network
+
+    \item Run \lstinline{./runJupyterhub.sh}
+\end{itemize}
+Jupyterhub can be accessed at http://localhost and Argo can be accessed at localhost:2746. After logging into Jupyterhub (for testing you can use user as username and password as password). Explore datasets available on DataExplorer. Use it by writing code and workflow.yaml and running the workflow as described above. View the workflow status on Argo at https://localhost:2746/workflows
